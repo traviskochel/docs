@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
 
    drawbot/docs/content/images.rst
+   pythonIntro/index.rst
 
 .. autofunction:: drawBot.textSize
 .. autofunction:: drawBot.installedFonts
