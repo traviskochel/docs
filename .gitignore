@@ -50,5 +50,7 @@ coverage.xml
 *.pot
 
 # Sphinx documentation
-docs/_build/
+_build/
 
+
+_build/doctrees/drawbot/docs/content/canvas.doctree

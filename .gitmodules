@@ -1,3 +1,6 @@
 [submodule "drawbot"]
 	path = drawbot
 	url = https://github.com/typemytype/drawbot.git
+[submodule "pythonIntro"]
+	path = pythonIntro
+	url = https://github.com/roboDocs/pythonIntro.git
