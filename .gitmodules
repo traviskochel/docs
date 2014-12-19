@@ -4,3 +4,9 @@
 [submodule "pythonIntro"]
 	path = pythonIntro
 	url = https://github.com/roboDocs/pythonIntro.git
+[submodule "drawBotExamples"]
+	path = drawBotExamples
+	url = https://github.com/roboDocs/drawBotExamples.git
+[submodule "fontToolsDocs"]
+	path = fontToolsDocs
+	url = https://github.com/roboDocs/fontToolsDocs.git
