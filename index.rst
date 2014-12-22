@@ -1,29 +1,66 @@
-.. RoboDocs documentation master file, created by
-   sphinx-quickstart on Mon Sep  1 22:32:37 2014.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+RoboDocs
+========
 
-Welcome to RoboDocs's documentation!
-====================================
-
-Contents:
+Introduction to Python
+^^^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
 
-   drawbot/docs/content/images.rst
-   pythonIntro/index.rst
+   pythonIntro/source/index.rst
 
-.. autofunction:: drawBot.textSize
-.. autofunction:: drawBot.installedFonts
+DrawBot
+^^^^^^^
 
+.. toctree::
+   :maxdepth: 2
 
+   DrawBot <drawbot_index.rst>
 
+TTX/FontTools
+^^^^^^^^^^^^^
 
-Indices and tables
-==================
+.. toctree::
+   :maxdepth: 2
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   fontToolsDocs/source/index.rst
 
+RoboFab
+^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
+   RoboFab <roboFabDocs/source/index.rst>
+
+RoboFont
+^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
+   RoboFont <roboFontDocumentation/index.rst>
+
+vanilla
+^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
+   vanilla <vanilla_index.rst>
+
+defcon
+^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
+   defcon <defcon/documentation/source/index.rst>
+
+ufo2fdk
+^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
+   ufo2fdk/documentation/source/index.rst

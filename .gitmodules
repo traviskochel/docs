@@ -10,3 +10,18 @@
 [submodule "fontToolsDocs"]
 	path = fontToolsDocs
 	url = https://github.com/roboDocs/fontToolsDocs.git
+[submodule "roboFabDocs"]
+	path = roboFabDocs
+	url = https://github.com/roboDocs/roboFabDocs
+[submodule "roboFontDocumentation"]
+	path = roboFontDocumentation
+	url = https://github.com/typemytype/roboFontDocumentation.git
+[submodule "vanilla"]
+	path = vanilla
+	url = https://github.com/typesupply/vanilla.git
+[submodule "defcon"]
+	path = defcon
+	url = https://github.com/typesupply/defcon
+[submodule "ufo2fdk"]
+	path = ufo2fdk
+	url = https://github.com/typesupply/ufo2fdk

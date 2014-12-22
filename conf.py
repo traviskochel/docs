@@ -166,7 +166,7 @@ html_static_path = ['static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'RoboDocsdoc'
+htmlhelp_basename = 'RoboDocs'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -185,7 +185,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'RoboDocs.tex', u'RoboDocs Documentation',
+  ('index', 'RoboDocs.tex', u'RoboDocs',
    u'F\\&G', 'manual'),
 ]
 
@@ -215,7 +215,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'robodocs', u'RoboDocs Documentation',
+    ('index', 'robodocs', u'RoboDocs',
      [u'F&G'], 1)
 ]
 
@@ -229,8 +229,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'RoboDocs', u'RoboDocs Documentation',
-   u'F&G', 'RoboDocs', 'One line description of project.',
+  ('index', 'RoboDocs', u'RoboDocs',
+   u'F&G', 'RoboDocs', 'Robo-tools documentation project.',
    'Miscellaneous'),
 ]
 

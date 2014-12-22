@@ -1,9 +1,0 @@
-update submodules:
-
-git submodule foreach --recursive git pull origin master
-git commit -a -m "update submodules"
-make html
-
-pre-commit hook
-
-adding git hooks to update submodules automically
