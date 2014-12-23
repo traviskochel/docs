@@ -4,8 +4,6 @@ DrawBot documentation
 .. toctree::
    :maxdepth: 2
 
-   drawbot/docs/content/history
-   drawbot/docs/content/credits
    drawbot/docs/content/shapes
    drawbot/docs/content/color
    drawbot/docs/content/canvas
@@ -15,3 +13,5 @@ DrawBot documentation
    drawbot/docs/content/drawBotApp
    drawbot/docs/content/download
    drawbot/docs/content/drawBotIcon
+   drawbot/docs/content/history
+   drawbot/docs/content/credits
