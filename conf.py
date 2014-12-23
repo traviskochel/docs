@@ -242,3 +242,50 @@ texinfo_documents = [
 
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
 #texinfo_show_urls = 'footnote'
+
+####################################
+
+# auto doc
+
+add_module_names = False
+autodoc_member_order = 'bysource'
+
+### mocking some import that are not availbe on read the docs
+
+class MetaMock(type):
+    
+    __all__ = []
+    
+    def __getattr__(self, name):
+        return self
+    
+    def __getitem__(self, index):
+        return self.__all__[index]
+
+class Mock(object):
+
+    __metaclass__ = MetaMock
+
+    def __init__(self, *args, **kwargs):
+        pass
+
+    def __call__(self, *args, **kwargs):
+        return Mock()
+
+    @classmethod
+    def __getattr__(cls, name):
+        if name in ('__file__', '__path__'):
+            return '/dev/null'
+        else:
+            return Mock
+
+MOCK_MODULES = [
+    'AppKit', 'Quartz', 'CoreText', 'QTKit',
+    'xmlWriter',
+    'defcon', 'defcon.objects.base', 'defcon.tools.notifications', 'drawBot', 'fontTools.afmLib', 'fontTools.agl', 'fontTools.cffLib', 'fontTools.fondLib', 'fontTools.misc.arrayTools', 'fontTools.misc.bezierTools', 'fontTools.misc.eexec', 'fontTools.misc.homeResFile', 'fontTools.misc.macCreatorType', 'fontTools.misc.psCharStrings', 'fontTools.misc.psLib', 'fontTools.misc.psOperators', 'fontTools.misc.textTools', 'fontTools.misc.transform', 'fontTools.nfntLib', 'fontTools.pens.basePen', 'fontTools.pens.boundsPen', 'fontTools.pens.cocoaPen', 'fontTools.pens.pointInsidePen', 'fontTools.pens.reportLabPen', 'fontTools.pens.transformPen', 'fontTools.t1Lib', 'fontTools.ttLib', 'fontTools.ttLib.macUtils', 'fontTools.ttLib.sfnt', 'fontTools.ttLib.standardGlyphOrder', 'fontTools.ttLib.tables.otBase', 'fontTools.ttLib.tables.otConverters', 'fontTools.ttLib.tables.otData', 'fontTools.ttLib.tables.ttProgram', 'fontTools.ttLib.xmlImport', 'fontTools.ttx', 'fontTools.unicode', 'robofab.gString', 'robofab.glifLib', 'robofab.glifLib2', 'robofab.interface', 'robofab.interface.all', 'robofab.interface.all.dialogs', 'robofab.interface.all.dialogs_default', 'robofab.interface.all.dialogs_fontlab_legacy1', 'robofab.interface.all.dialogs_fontlab_legacy2', 'robofab.interface.all.dialogs_legacy', 'robofab.interface.all.dialogs_mac_vanilla', 'robofab.interface.mac', 'robofab.interface.win', 'robofab.misc.arrayTools', 'robofab.misc.bezierTools', 'robofab.misc.speedTestCase', 'robofab.misc.test', 'robofab.objects.objectsBase', 'robofab.objects.objectsFF', 'robofab.objects.objectsFL', 'robofab.objects.objectsRF', 'robofab.pens.adapterPens', 'robofab.pens.angledMarginPen', 'robofab.pens.boundsPen', 'robofab.pens.digestPen', 'robofab.pens.filterPen', 'robofab.pens.flPen', 'robofab.pens.marginPen', 'robofab.pens.mathPens', 'robofab.pens.pointPen', 'robofab.pens.quartzPen', 'robofab.pens.reverseContourPointPen', 'robofab.pens.rfUFOPen', 'robofab.plistFromTree', 'robofab.plistlib', 'robofab.test.test_dialogs', 'robofab.test.test_glifLib', 'robofab.test.test_noneLabUFOReadWrite', 'robofab.test.test_objectsUFO', 'robofab.test.test_pens', 'robofab.test.test_psHints', 'robofab.tools', 'robofab.tools.accentBuilder', 'robofab.tools.fontlabFeatureSplitter', 'robofab.tools.glifImport', 'robofab.tools.glyphConstruction', 'robofab.tools.glyphNameSchemes', 'robofab.tools.objectDumper', 'robofab.tools.otFeatures', 'robofab.tools.proof', 'robofab.tools.remote', 'robofab.tools.rfPrefs', 'robofab.tools.toolsAll', 'robofab.tools.toolsFL', 'robofab.tools.toolsRF', 'robofab.ufoLib', 'robofab.world', 'robofab.xmlTreeBuilder', 'ufo2fdk', 'ufo2fdk.fdkBridge', 'ufo2fdk.fontInfoData', 'ufo2fdk.kernFeatureWriter', 'ufo2fdk.makeotfParts', 'ufo2fdk.outlineOTF', 'vanilla',
+    ]
+import sys
+
+
+for mod_name in MOCK_MODULES:
+    sys.modules[mod_name] = Mock()
