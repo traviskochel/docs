@@ -289,3 +289,78 @@ import sys
 
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = Mock()
+
+
+# sphinx hacking
+
+import posixpath
+
+import inspect
+
+from sphinx import addnodes
+from sphinx.directives.code import LiteralInclude
+from sphinx.util.inspect import getargspec
+from sphinx.ext import autodoc
+from sphinx.writers.html import HTMLTranslator
+
+def visit_download_reference(self, node):
+    if node.hasattr('filename'):
+        data = dict(
+            urlPath=posixpath.join(self.builder.dlpath, node['filename']),
+            fileName=node['filename']
+            )
+        self.body.append('<div class="downloadlink"><a class="reference internal drawbotlink" href="%(urlPath)s">Open in DrawBot: %(fileName)s</a>' % data)
+        self.body.append('<a class="reference internal" href="%(urlPath)s">Download: %(fileName)s</a></div>' % data)
+
+        node.clear()
+
+def depart_download_reference(self, node):
+    pass
+
+HTMLTranslator.visit_download_reference = visit_download_reference
+HTMLTranslator.depart_download_reference = depart_download_reference
+
+class ShowCode(LiteralInclude):
+
+    has_content = False
+    required_arguments = 1
+    final_argument_whitespace = True
+
+    def run(self):
+        nodes = super(ShowCode, self).run()
+        node = addnodes.download_reference()
+        node['reftarget'] = self.arguments[0]
+        nodes.append(node)
+        return nodes
+
+class DrawBotDocumenter(autodoc.FunctionDocumenter):
+    objtype = "function"
+
+    def format_args(self):
+        if inspect.isbuiltin(self.object) or \
+               inspect.ismethoddescriptor(self.object):
+            # cannot introspect arguments of a C function or method
+            return None
+        try:
+            argspec = getargspec(self.object)
+        except TypeError:
+            # if a class should be documented as function (yay duck
+            # typing) we try to use the constructor signature as function
+            # signature without the first argument.
+            try:
+                argspec = getargspec(self.object.__new__)
+            except TypeError:
+                argspec = getargspec(self.object.__init__)
+                if argspec[0]:
+                    del argspec[0][0]
+        if "self" in argspec.args:
+            argspec.args.remove("self")
+        args = inspect.formatargspec(*argspec)
+        # escape backslashes for reST
+        args = args.replace('\\', '\\\\')
+        return args
+
+
+def setup(app):
+    app.add_directive('showcode', ShowCode)
+    app.add_autodocumenter(DrawBotDocumenter)
