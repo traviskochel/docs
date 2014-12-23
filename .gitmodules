@@ -25,3 +25,6 @@
 [submodule "ufo2fdk"]
 	path = ufo2fdk
 	url = https://github.com/typesupply/ufo2fdk
+[submodule "roboFab"]
+	path = roboFab
+	url = https://github.com/robofab-developers/robofab
