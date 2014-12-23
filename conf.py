@@ -242,3 +242,125 @@ texinfo_documents = [
 
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
 #texinfo_show_urls = 'footnote'
+
+####################################
+
+# auto doc
+
+add_module_names = False
+autodoc_member_order = 'bysource'
+
+### mocking some import that are not availbe on read the docs
+
+class MetaMock(type):
+    
+    __all__ = []
+    
+    def __getattr__(self, name):
+        return self
+    
+    def __getitem__(self, index):
+        return self.__all__[index]
+
+class Mock(object):
+
+    __metaclass__ = MetaMock
+
+    def __init__(self, *args, **kwargs):
+        pass
+
+    def __call__(self, *args, **kwargs):
+        return Mock()
+
+    @classmethod
+    def __getattr__(cls, name):
+        if name in ('__file__', '__path__'):
+            return '/dev/null'
+        else:
+            return Mock
+
+MOCK_MODULES = [
+    'AppKit', 'Quartz', 'CoreText', 'QTKit',
+    'xmlWriter',
+    'defcon', 'defcon.objects.base', 'defcon.tools.notifications', 'drawBot', 'fontTools.afmLib', 'fontTools.agl', 'fontTools.cffLib', 'fontTools.fondLib', 'fontTools.misc.arrayTools', 'fontTools.misc.bezierTools', 'fontTools.misc.eexec', 'fontTools.misc.homeResFile', 'fontTools.misc.macCreatorType', 'fontTools.misc.psCharStrings', 'fontTools.misc.psLib', 'fontTools.misc.psOperators', 'fontTools.misc.textTools', 'fontTools.misc.transform', 'fontTools.nfntLib', 'fontTools.pens.basePen', 'fontTools.pens.boundsPen', 'fontTools.pens.cocoaPen', 'fontTools.pens.pointInsidePen', 'fontTools.pens.reportLabPen', 'fontTools.pens.transformPen', 'fontTools.t1Lib', 'fontTools.ttLib', 'fontTools.ttLib.macUtils', 'fontTools.ttLib.sfnt', 'fontTools.ttLib.standardGlyphOrder', 'fontTools.ttLib.tables.otBase', 'fontTools.ttLib.tables.otConverters', 'fontTools.ttLib.tables.otData', 'fontTools.ttLib.tables.ttProgram', 'fontTools.ttLib.xmlImport', 'fontTools.ttx', 'fontTools.unicode', 'objects.base', 'robofab.gString', 'robofab.glifLib', 'robofab.glifLib2', 'robofab.interface', 'robofab.interface.all', 'robofab.interface.all.dialogs', 'robofab.interface.all.dialogs_default', 'robofab.interface.all.dialogs_fontlab_legacy1', 'robofab.interface.all.dialogs_fontlab_legacy2', 'robofab.interface.all.dialogs_legacy', 'robofab.interface.all.dialogs_mac_vanilla', 'robofab.interface.mac', 'robofab.interface.win', 'robofab.misc.arrayTools', 'robofab.misc.bezierTools', 'robofab.misc.speedTestCase', 'robofab.misc.test', 'robofab.objects.objectsBase', 'robofab.objects.objectsFF', 'robofab.objects.objectsFL', 'robofab.objects.objectsRF', 'robofab.pens.adapterPens', 'robofab.pens.angledMarginPen', 'robofab.pens.boundsPen', 'robofab.pens.digestPen', 'robofab.pens.filterPen', 'robofab.pens.flPen', 'robofab.pens.marginPen', 'robofab.pens.mathPens', 'robofab.pens.pointPen', 'robofab.pens.quartzPen', 'robofab.pens.reverseContourPointPen', 'robofab.pens.rfUFOPen', 'robofab.plistFromTree', 'robofab.plistlib', 'robofab.test.test_dialogs', 'robofab.test.test_glifLib', 'robofab.test.test_noneLabUFOReadWrite', 'robofab.test.test_objectsUFO', 'robofab.test.test_pens', 'robofab.test.test_psHints', 'robofab.tools', 'robofab.tools.accentBuilder', 'robofab.tools.fontlabFeatureSplitter', 'robofab.tools.glifImport', 'robofab.tools.glyphConstruction', 'robofab.tools.glyphNameSchemes', 'robofab.tools.objectDumper', 'robofab.tools.otFeatures', 'robofab.tools.proof', 'robofab.tools.remote', 'robofab.tools.rfPrefs', 'robofab.tools.toolsAll', 'robofab.tools.toolsFL', 'robofab.tools.toolsRF', 'robofab.ufoLib', 'robofab.world', 'robofab.xmlTreeBuilder', 'tools.notifications', 'ufo2fdk', 'ufo2fdk.fdkBridge', 'ufo2fdk.fontInfoData', 'ufo2fdk.kernFeatureWriter', 'ufo2fdk.makeotfParts', 'ufo2fdk.outlineOTF', 'vanilla',
+    ]
+import sys
+
+
+for mod_name in MOCK_MODULES:
+    sys.modules[mod_name] = Mock()
+
+
+# sphinx hacking
+
+import posixpath
+
+import inspect
+
+from sphinx import addnodes
+from sphinx.directives.code import LiteralInclude
+from sphinx.util.inspect import getargspec
+from sphinx.ext import autodoc
+from sphinx.writers.html import HTMLTranslator
+
+def visit_download_reference(self, node):
+    if node.hasattr('filename'):
+        data = dict(
+            urlPath=posixpath.join(self.builder.dlpath, node['filename']),
+            fileName=node['filename']
+            )
+        self.body.append('<div class="downloadlink"><a class="reference internal drawbotlink" href="%(urlPath)s">Open in DrawBot: %(fileName)s</a>' % data)
+        self.body.append('<a class="reference internal" href="%(urlPath)s">Download: %(fileName)s</a></div>' % data)
+
+        node.clear()
+
+def depart_download_reference(self, node):
+    pass
+
+HTMLTranslator.visit_download_reference = visit_download_reference
+HTMLTranslator.depart_download_reference = depart_download_reference
+
+class ShowCode(LiteralInclude):
+
+    has_content = False
+    required_arguments = 1
+    final_argument_whitespace = True
+
+    def run(self):
+        nodes = super(ShowCode, self).run()
+        node = addnodes.download_reference()
+        node['reftarget'] = self.arguments[0]
+        nodes.append(node)
+        return nodes
+
+class DrawBotDocumenter(autodoc.FunctionDocumenter):
+    objtype = "function"
+
+    def format_args(self):
+        if inspect.isbuiltin(self.object) or \
+               inspect.ismethoddescriptor(self.object):
+            # cannot introspect arguments of a C function or method
+            return None
+        try:
+            argspec = getargspec(self.object)
+        except TypeError:
+            # if a class should be documented as function (yay duck
+            # typing) we try to use the constructor signature as function
+            # signature without the first argument.
+            try:
+                argspec = getargspec(self.object.__new__)
+            except TypeError:
+                argspec = getargspec(self.object.__init__)
+                if argspec[0]:
+                    del argspec[0][0]
+        if "self" in argspec.args:
+            argspec.args.remove("self")
+        args = inspect.formatargspec(*argspec)
+        # escape backslashes for reST
+        args = args.replace('\\', '\\\\')
+        return args
+
+
+def setup(app):
+    app.add_directive('showcode', ShowCode)
+    app.add_autodocumenter(DrawBotDocumenter)
