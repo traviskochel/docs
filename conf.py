@@ -24,6 +24,7 @@ today = date.today()
 sys.path.insert(0, os.path.abspath('drawbot'))
 sys.path.insert(0, os.path.join(os.path.abspath('roboFab'), 'Lib'))
 sys.path.insert(0, os.path.join(os.path.abspath('defcon'), 'Lib'))
+sys.path.insert(0, os.path.join(os.path.abspath('vanilla'), 'Lib'))
 
 # -- General configuration -----------------------------------------------------
 
