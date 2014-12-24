@@ -21,8 +21,9 @@ today = date.today()
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
 
-sys.path.insert(0, os.path.abspath('drawBot'))
-sys.path.insert(0, os.path.join(os.path.abspath('roboFab'), 'lib'))
+sys.path.insert(0, os.path.abspath('drawbot'))
+sys.path.insert(0, os.path.join(os.path.abspath('roboFab'), 'Lib'))
+sys.path.insert(0, os.path.join(os.path.abspath('defcon'), 'Lib'))
 
 # -- General configuration -----------------------------------------------------
 
@@ -311,6 +312,7 @@ MOCK_MODULES = [
     'xmlWriter',
     'vanilla.externalFrameworks.RBSplitView',
     'objects.base', 'tools.notifications',
+    'FL', # ;-)
     ]
 
 for mod_name in MOCK_MODULES:
