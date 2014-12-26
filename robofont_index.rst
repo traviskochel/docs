@@ -4,6 +4,6 @@ RoboFont documentation
 .. toctree::
    :maxdepth: 2
 
-   roboFontDocumentation/content/documentation.rst
-   roboFontDocumentation/content/extensions.rst
-   roboFontDocumentation/content/API.rst
+   robofont_documentation.rst
+   robofont_extensions.rst
+   robofont_API.rst
