@@ -10,6 +10,7 @@ An introduction to the Python programming language.
    :maxdepth: 1
 
    pythonIntro/source/index.rst
+   Python examples <python_examples.rst>
 
 DrawBot
 ^^^^^^^
@@ -20,16 +21,18 @@ An environment to create graphics using Python code.
    :maxdepth: 1
 
    DrawBot documentation <drawbot_index.rst>
+   DrawBot examples <drawbot_examples.rst>
+   DrawBot exercises <drawbot_exercises.rst>
 
-TTX/FontTools
-^^^^^^^^^^^^^
+FontTools
+^^^^^^^^^
 
 A suite of tools for manipulating binary fonts.
 
 .. toctree::
    :maxdepth: 1
 
-   fontToolsDocs/source/index.rst
+   FontTools <fontToolsDocs/source/index.rst>
 
 RoboFab
 ^^^^^^^
@@ -50,6 +53,7 @@ A highly customisable font editor written in Python.
    :maxdepth: 1
 
    RoboFont documentation <robofont_index.rst>
+   RoboFont examples <robofont_examples.rst>
 
 vanilla
 ^^^^^^^

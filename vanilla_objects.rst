@@ -2,7 +2,7 @@ Objects
 =======
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    vanilla_objects_windows.rst 
    vanilla_objects_layout-views.rst 

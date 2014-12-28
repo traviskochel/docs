@@ -2,7 +2,7 @@ Inputs
 ======
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    vanilla/Documentation/source/objects/TextEditor
    vanilla/Documentation/source/objects/TextBox

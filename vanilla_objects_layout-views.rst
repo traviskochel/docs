@@ -2,7 +2,7 @@ Layout Views
 ============
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
   
    vanilla/Documentation/source/objects/Group
    vanilla/Documentation/source/objects/ScrollView

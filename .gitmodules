@@ -28,3 +28,6 @@
 [submodule "roboFab"]
 	path = roboFab
 	url = https://github.com/robofab-developers/robofab
+[submodule "RoboFontExamples"]
+	path = RoboFontExamples
+	url = https://github.com/typemytype/RoboFontExamples.git

@@ -2,7 +2,7 @@ Progress Indicators
 ===================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    vanilla/Documentation/source/objects/ProgressBar
    vanilla/Documentation/source/objects/ProgressSpinner
