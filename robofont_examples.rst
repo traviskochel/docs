@@ -7,3 +7,4 @@ RoboFont examples
    robofont_examples_ui
    robofont_examples_observers
    robofont_examples_tools
+   robofont_examples_interpolation
