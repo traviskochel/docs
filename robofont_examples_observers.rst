@@ -11,7 +11,7 @@ Draw reference glyph
 
 .. showcode:: roboFontExamples/observers/drawReferenceGlyph.py
 
-Draw distance between selected points
+Show distance between selected points
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. showcode:: roboFontExamples/observers/drawSelectedPointDistances.py
@@ -42,3 +42,20 @@ View glyphs in current glyph's mask
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. showcode:: roboFontExamples/observers/theMask.py
+
+Glyph box preview
+^^^^^^^^^^^^^^^^^
+
+Display the glyph's bounding box when previewing.
+
+.. showcode:: roboFontExamples/observers/drawVerticalMetricsBox.py
+
+Preview expanded strokes
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. showcode:: roboFontExamples/observers/strokeIt.py
+
+Display point count
+^^^^^^^^^^^^^^^^^^^
+
+.. showcode:: roboFontExamples/pointCounter/pointCounter.py

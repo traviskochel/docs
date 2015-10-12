@@ -58,7 +58,7 @@ A highly customisable font editor written in Python.
 vanilla
 ^^^^^^^
 
-A library to create native Mac OS X interfaces 
+A library to create native Mac OS X interfaces.
 
 .. toctree::
    :maxdepth: 1

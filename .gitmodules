@@ -31,3 +31,6 @@
 [submodule "RoboFontExamples"]
 	path = RoboFontExamples
 	url = https://github.com/typemytype/RoboFontExamples.git
+[submodule "pythonExamples"]
+	path = pythonExamples
+	url = https://github.com/roboDocs/pythonExamples.git
