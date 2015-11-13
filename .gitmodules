@@ -34,3 +34,6 @@
 [submodule "pythonExamples"]
 	path = pythonExamples
 	url = https://github.com/roboDocs/pythonExamples.git
+[submodule "sphinx_rtd_theme"]
+	path = sphinx_rtd_theme
+	url = https://github.com/snide/sphinx_rtd_theme.git
